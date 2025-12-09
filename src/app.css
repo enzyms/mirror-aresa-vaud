@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Colors - Primary */
+  --color-primary-50: rgb(238 245 251);
+  --color-primary-100: rgb(203 225 244);
+  --color-primary-200: rgb(168 204 236);
+  --color-primary-300: rgb(133 183 228);
+  --color-primary-400: rgb(98 163 221);
+  --color-primary-500: rgb(62 142 213);
+  --color-primary-600: rgb(39 113 179);
+  --color-primary-700: rgb(34 98 156);
+  --color-primary-800: rgb(26 76 121);
+  --color-primary-900: rgb(19 54 85);
+  --color-primary-950: rgb(11 32 50);
+
+  /* Colors - Gray */
+  --color-gray-50: rgb(249 249 249);
+  --color-gray-100: rgb(234 234 234);
+  --color-gray-200: rgb(201 201 201);
+  --color-gray-300: rgb(181 181 181);
+  --color-gray-400: rgb(159 159 159);
+  --color-gray-500: rgb(138 138 138);
+  --color-gray-600: rgb(116 116 116);
+  --color-gray-700: rgb(95 95 95);
+  --color-gray-800: rgb(74 74 74);
+  --color-gray-900: rgb(52 52 52);
+  --color-gray-950: rgb(31 31 31);
+
+  /* Colors - Other */
+  --color-error-50: rgb(254 242 242);
+  --color-error-600: #CA3A31;
+  
+  /* Font family - using system fonts similar to SF Pro */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Spacing variables */
+  --spacer-0-5: 2px;
+  --spacer-1: 4px;
+  --spacer-2: 8px;
+  --spacer-3: 12px;
+  --spacer-4: 16px;
+  --spacer-5: 20px;
+  --spacer-6: 24px;
+  --spacer-7: 28px;
+  --spacer-8: 32px;
+  
+  --container-base-margin: 80px;
+}
+
+/* Custom shadow */
+.shadow-card {
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dropdown animations */
+.animate-in {
+  animation: animate-in 150ms ease-out;
+}
+
+.fade-in-0 {
+  --tw-enter-opacity: 0;
+}
+
+.zoom-in-95 {
+  --tw-enter-scale: 0.95;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: scale(var(--tw-enter-scale, 1));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
