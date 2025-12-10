@@ -1,12 +1,17 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	interface Props {
 		class?: string;
+		children?: Snippet;
 	}
 
-	let { class: className = '' }: Props = $props();
+	let { class: className = '', children }: Props = $props();
 </script>
 
-<div class="bg-white rounded-[13px] shadow-card h-[180px] md:h-[213px] {className}">
-	<slot />
+<div class="bg-white rounded-[13px] shadow-card {className}">
+	{#if children}
+		{@render children()}
+	{/if}
 </div>
 

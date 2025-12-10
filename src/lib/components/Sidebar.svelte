@@ -47,7 +47,7 @@
 				{ icon: ClipboardCheck, label: 'Tâches à valider', href: '/taches' },
 				{ icon: BookOpen, label: 'Livre de bord', href: '/livre-de-bord' },
 				{ icon: Megaphone, label: 'Annonces', href: '/annonces' },
-				{ icon: ShieldAlert, label: 'Qualité', href: '/qualite' },
+				{ icon: ShieldAlert, label: 'Signalements qualité', href: '/qualite' },
 				{ icon: AlertTriangle, label: 'Pannes', href: '/pannes' },
 				{ icon: GraduationCap, label: 'Étudiants', href: '/etudiants' },
 			]
@@ -91,7 +91,7 @@
 
 <!-- Sidebar -->
 <aside 
-	class="fixed lg:relative z-50 lg:z-auto h-full w-[279px] bg-primary-50 rounded-[28px] shadow-card px-4 py-6 flex flex-col transition-transform duration-300 ease-in-out overflow-y-auto {isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}"
+	class="fixed lg:relative z-50 lg:z-auto h-full w-[300px] bg-primary-50 rounded-[28px] shadow-card px-4 py-6 flex flex-col transition-transform duration-300 ease-in-out overflow-y-auto {isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}"
 >
 	<nav class="flex flex-col gap-8">
 		{#each menuCategories as category}
