@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { Search, Bell, Menu, X, ChevronDown, User, History, Pill, GraduationCap, Shirt, Download, LogOut } from 'lucide-svelte';
+	import { Search, Bell, Menu, X, ChevronDown, User, History, Pill, GraduationCap, Shirt, Download, LogOut, Monitor, Siren, Plus, Check } from 'lucide-svelte';
 	import Logo from './Logo.svelte';
 	import { DropdownMenu } from 'bits-ui';
+	import { modeStore, modes } from '$lib/stores/mode.svelte';
 
 	interface Props {
 		onMenuToggle?: () => void;
@@ -62,6 +63,65 @@
 
 		<!-- Divider - hidden on mobile -->
 		<div class="hidden md:block w-px h-[38px] bg-gray-300"></div>
+
+		<!-- Mode Dropdown -->
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger class="flex items-center gap-2 px-3 md:px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-full cursor-pointer transition-colors outline-none">
+				{#if modeStore.current === 'desktop'}
+					<Monitor size={16} class="text-primary-600" />
+					<span class="text-sm font-medium text-gray-700">Bureau</span>
+				{:else}
+					<Siren size={16} class="text-primary-600" />
+					<span class="text-sm font-medium text-gray-700">Intervention</span>
+				{/if}
+				<ChevronDown size={14} class="text-gray-500" />
+			</DropdownMenu.Trigger>
+
+			<DropdownMenu.Content 
+				class="z-50 min-w-[200px] bg-white rounded-2xl shadow-lg border border-gray-100 py-2 mt-2 animate-in fade-in-0 zoom-in-95"
+				sideOffset={8}
+				align="center"
+			>
+				<DropdownMenu.Group>
+					<DropdownMenu.GroupHeading class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+						Mode actif
+					</DropdownMenu.GroupHeading>
+					
+					<DropdownMenu.Item 
+						class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors"
+						onSelect={() => { modeStore.current = 'desktop'; }}
+					>
+						<div class="flex items-center gap-3">
+							<Monitor size={16} />
+							Bureau
+						</div>
+						{#if modeStore.current === 'desktop'}
+							<Check size={16} class="text-primary-600" />
+						{/if}
+					</DropdownMenu.Item>
+
+					<DropdownMenu.Item 
+						class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors"
+						onSelect={() => { modeStore.current = 'intervention'; }}
+					>
+						<div class="flex items-center gap-3">
+							<Siren size={16} />
+							Intervention
+						</div>
+						{#if modeStore.current === 'intervention'}
+							<Check size={16} class="text-primary-600" />
+						{/if}
+					</DropdownMenu.Item>
+				</DropdownMenu.Group>
+
+				<DropdownMenu.Separator class="my-2 h-px bg-gray-100" />
+
+				<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2.5 text-sm text-primary-600 hover:bg-primary-50 cursor-pointer outline-none transition-colors font-medium">
+					<Plus size={16} />
+					Ajouter un nouveau mode
+				</DropdownMenu.Item>
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
 
 		<!-- User info with dropdown -->
 		<DropdownMenu.Root>

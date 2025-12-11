@@ -28,7 +28,7 @@
 	};
 </script>
 
-<DashboardCard class="h-auto">
+<DashboardCard>
 	<div class="flex items-center justify-between h-full p-5">
 		<div class="flex flex-col">
 			<p class="text-sm text-gray-500 font-medium">{label}</p>

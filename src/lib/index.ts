@@ -10,3 +10,5 @@ export { default as ActivityItem } from './components/ActivityItem.svelte';
 export { default as QualityReportItem } from './components/QualityReportItem.svelte';
 export { default as LogbookEntry } from './components/LogbookEntry.svelte';
 export { default as Btn } from './components/Btn.svelte';
+export { default as DashboardGrid } from './components/DashboardGrid.svelte';
+export type { CardDefinition } from './components/DashboardGrid.svelte';
