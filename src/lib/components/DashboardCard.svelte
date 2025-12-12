@@ -9,7 +9,7 @@
 	let { class: className = '', children }: Props = $props();
 </script>
 
-<div class="bg-white rounded-[13px] shadow-card {className}">
+<div class="bg-white rounded-xl shadow-card {className}">
 	{#if children}
 		{@render children()}
 	{/if}

@@ -48,7 +48,7 @@
 			<PageSubTitle>Journal des événements et interventions.</PageSubTitle>
 
 			<!-- Placeholder content -->
-			<div class="px-4 md:px-8 xl:px-20 pb-4 flex-1 flex flex-col">
+			<div class="md:px-8 xl:px-20 pb-4 flex-1 flex flex-col">
 				<DashboardCard class="flex-1 h-auto" />
 			</div>
 		</main>

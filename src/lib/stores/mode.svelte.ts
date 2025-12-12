@@ -7,7 +7,7 @@ export const modes = [
 export type ModeId = typeof modes[number]['id'];
 
 // Reactive state using Svelte 5 runes
-let _currentMode = $state<ModeId>('intervention');
+let _currentMode = $state<ModeId>('desktop');
 
 export function getCurrentMode(): ModeId {
 	return _currentMode;

@@ -11,6 +11,7 @@
 	import QualityReportItem from '$lib/components/QualityReportItem.svelte';
 	import LogbookEntry from '$lib/components/LogbookEntry.svelte';
 	import Btn from '$lib/components/Btn.svelte';
+	import QuickActionBtn from '$lib/components/QuickActionBtn.svelte';
 	import DashboardGrid, { type CardDefinition } from '$lib/components/DashboardGrid.svelte';
 	import { 
 		ClipboardCheck, 
@@ -38,6 +39,7 @@
 		Navigation2,
 		MoreVertical,
 		ExternalLink,
+		Check,
 	} from 'lucide-svelte';
 	import { modeStore } from '$lib/stores/mode.svelte';
 
@@ -49,6 +51,24 @@
 
 	function closeMobileMenu() {
 		isMobileMenuOpen = false;
+	}
+
+	// Intervention chrono (starts at 12:34 = 754 seconds for demo)
+	let chronoSeconds = $state(754);
+
+	$effect(() => {
+		const interval = setInterval(() => {
+			chronoSeconds += 1;
+		}, 1000);
+
+		return () => clearInterval(interval);
+	});
+
+	function formatChrono(totalSeconds: number): string {
+		const hours = Math.floor(totalSeconds / 3600);
+		const minutes = Math.floor((totalSeconds % 3600) / 60);
+		const seconds = totalSeconds % 60;
+		return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 	}
 
 	// Get current date in French format
@@ -314,15 +334,15 @@
 					<h3 class="text-base font-bold text-gray-900">Intervention en cours</h3>
 					<div class="flex items-center gap-2">
 						<Timer size={16} class="text-primary-600" />
-						<span class="text-sm font-mono font-bold text-primary-700">00:12:34</span>
+						<span class="text-sm font-mono font-bold text-primary-700">{formatChrono(chronoSeconds)}</span>
 					</div>
 				</div>
 				
 				<!-- Active Intervention -->
-				<div class="bg-primary-50 border border-primary-200 rounded-xl px-4 py-3 mb-4 hover:bg-primary-100 transition-colors cursor-pointer">
+				<div class="bg-primary-50 border-2 border-primary-200 rounded-xl px-4 py-3 mb-4 hover:bg-primary-100 transition-colors cursor-pointer">
 					<div class="flex items-center justify-between">
 						<span class="text-sm font-mono font-bold text-primary-800">FIP-2025-08471</span>
-						<Btn variant="secondary" size="md" icon={ExternalLink} class="justify-center px-2.5!">
+						<Btn variant="secondary" size="md" icon={ExternalLink} class="justify-center px-2.5! -m-2">
 							<span class="sr-only">Ouvrir</span>
 						</Btn>
 					</div>
@@ -359,30 +379,12 @@
 			<div class="xl:border-l xl:border-gray-200 xl:pl-6">
 				<h4 class="text-sm font-semibold text-gray-700 mb-3">Entrées rapides</h4>
 				<div class="grid grid-cols-2 gap-3">
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-emerald-100 hover:bg-emerald-200 border-2 border-emerald-300 rounded-xl transition-colors group">
-						<Navigation2 size={24} class="text-emerald-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-emerald-800">Départ</span>
-					</button>
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 rounded-xl transition-colors group">
-						<MapPin size={24} class="text-blue-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-blue-800">Sur place</span>
-					</button>
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-rose-100 hover:bg-rose-200 border-2 border-rose-300 rounded-xl transition-colors group">
-						<Pill size={24} class="text-rose-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-rose-800">Médicament</span>
-					</button>
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-violet-100 hover:bg-violet-200 border-2 border-violet-300 rounded-xl transition-colors group">
-						<Mic size={24} class="text-violet-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-violet-800">Note</span>
-					</button>
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 rounded-xl transition-colors group">
-						<Ambulance size={24} class="text-orange-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-orange-800">Transport</span>
-					</button>
-					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-cyan-100 hover:bg-cyan-200 border-2 border-cyan-300 rounded-xl transition-colors group">
-						<Hospital size={24} class="text-cyan-700 mb-1 group-hover:scale-110 transition-transform" />
-						<span class="font-semibold text-cyan-800">Hôpital</span>
-					</button>
+					<QuickActionBtn icon={Navigation2} label="Départ" color="emerald" completed />
+					<QuickActionBtn icon={MapPin} label="Sur place" color="blue" completed />
+					<QuickActionBtn icon={Pill} label="Médicament utilisé" color="rose" />
+					<QuickActionBtn icon={Mic} label="Note" color="violet" />
+					<QuickActionBtn icon={Ambulance} label="Transport" color="orange" />
+					<QuickActionBtn icon={Hospital} label="Hôpital" color="cyan" />
 				</div>
 			</div>
 		</div>
@@ -490,32 +492,28 @@
 		<div class="p-5 flex flex-col h-full">
 			<div class="flex items-center justify-between mb-4">
 				<h3 class="text-base font-bold text-gray-900">Signalement qualité</h3>
-				<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">2 ouverts</span>
 			</div>
 
 			<!-- Quick categories -->
 			<div class="space-y-2 mb-4">
-				<button class="w-full flex items-center gap-3 p-3 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors text-left">
-					<AlertTriangle size={18} class="text-red-600 shrink-0" />
-					<div>
-						<p class="text-sm font-medium text-red-800">Incident</p>
-						<p class="text-xs text-red-600">Erreur, événement indésirable</p>
-					</div>
-				</button>
-				<button class="w-full flex items-center gap-3 p-3 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors text-left">
-					<ShieldAlert size={18} class="text-amber-600 shrink-0" />
-					<div>
-						<p class="text-sm font-medium text-amber-800">Sécurité patient</p>
-						<p class="text-xs text-amber-600">Risque ou danger identifié</p>
-					</div>
-				</button>
-				<button class="w-full flex items-center gap-3 p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-left">
-					<Wrench size={18} class="text-blue-600 shrink-0" />
-					<div>
-						<p class="text-sm font-medium text-blue-800">Matériel / Procédure</p>
-						<p class="text-xs text-blue-600">Dysfonctionnement, amélioration</p>
-					</div>
-				</button>
+			<QuickActionBtn 
+				icon={AlertTriangle} 
+				label="Incident" 
+				description="Erreur, événement indésirable" 
+				color="red" 
+			/>
+			<QuickActionBtn 
+				icon={ShieldAlert} 
+				label="Sécurité patient" 
+				description="Risque ou danger identifié" 
+				color="amber" 
+			/>
+			<QuickActionBtn 
+				icon={Wrench} 
+				label="Matériel / Procédure" 
+				description="Dysfonctionnement, amélioration" 
+				color="blue" 
+			/>
 			</div>
 
 			<!-- Dictation shortcut -->
@@ -555,7 +553,7 @@
 			{/if}
 
 			<!-- Dashboard Content -->
-			<div class="px-4 md:px-8 xl:px-20 pb-8" class:pt-6={modeStore.current === 'intervention'}>
+			<div class="md:px-8 xl:px-20 pb-8 md:pt-6" class:pt-0={modeStore.current === 'intervention'}>
 				<DashboardGrid {cards} />
 			</div>
 		</main>

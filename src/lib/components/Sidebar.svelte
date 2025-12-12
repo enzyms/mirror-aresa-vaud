@@ -91,7 +91,7 @@
 
 <!-- Sidebar -->
 <aside 
-	class="fixed lg:relative z-50 lg:z-auto h-full w-[300px] bg-primary-50 rounded-[28px] shadow-card px-4 py-6 flex flex-col transition-transform duration-300 ease-in-out overflow-y-auto {isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}"
+	class="md:my-6 fixed lg:relative z-50 lg:z-auto h-full w-[300px] bg-primary-50 rounded-xl shadow-card px-4 py-6 flex flex-col transition-transform duration-300 ease-in-out overflow-y-auto {isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}"
 >
 	<nav class="flex flex-col gap-8">
 		{#each menuCategories as category}

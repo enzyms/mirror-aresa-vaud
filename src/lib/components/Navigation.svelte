@@ -10,9 +10,16 @@
 	}
 
 	let { onMenuToggle, isMobileMenuOpen = false }: Props = $props();
+
+	// Adjust root font size based on mode
+	$effect(() => {
+		if (typeof document !== 'undefined') {
+			document.documentElement.style.fontSize = modeStore.current === 'intervention' ? '20px' : '16px';
+		}
+	});
 </script>
 
-<nav class="bg-white rounded-[28px] shadow-card px-4 md:px-7 py-3 flex items-center justify-between overflow-hidden">
+<nav class="bg-white rounded-3xl shadow-card px-4 md:px-7 py-3 flex items-center justify-between overflow-hidden">
 	<!-- Logo -->
 	<div class="flex items-center gap-2">
 		<!-- Mobile menu toggle -->
@@ -45,24 +52,27 @@
 
 	<!-- User navigation -->
 	<div class="flex items-center gap-3 md:gap-5">
-		<!-- Mobile search button -->
-		<button class="lg:hidden p-2 text-gray-600 hover:text-primary-700 transition-colors">
-			<Search size={20} />
-		</button>
 		
-		<!-- Notification bell -->
-		<div class="relative">
-			<button class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary-700 transition-colors">
-				<Bell size={24} />
+		
+		{#if modeStore.current !== 'intervention'}
+			<!-- Mobile search button -->
+			<button class="lg:hidden p-2 text-gray-600 hover:text-primary-700 transition-colors">
+				<Search size={20} />
 			</button>
-			<!-- Notification badge -->
-			<div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-error-600 rounded-full flex items-center justify-center">
-				<span class="text-[10px] text-white font-medium">3</span>
+			<!-- Notification bell -->
+			<div class="relative">
+				<button class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-primary-700 transition-colors">
+					<Bell size={24} />
+				</button>
+				<!-- Notification badge -->
+				<div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-error-600 rounded-full flex items-center justify-center">
+					<span class="text-[10px] text-white font-medium">3</span>
+				</div>
 			</div>
-		</div>
 
-		<!-- Divider - hidden on mobile -->
-		<div class="hidden md:block w-px h-[38px] bg-gray-300"></div>
+			<!-- Divider - hidden on mobile -->
+			<div class="hidden md:block w-px h-[38px] bg-gray-300"></div>
+		{/if}
 
 		<!-- Mode Dropdown -->
 		<DropdownMenu.Root>
@@ -123,89 +133,91 @@
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 
-		<!-- User info with dropdown -->
-		<DropdownMenu.Root>
-			<DropdownMenu.Trigger class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity outline-none">
-				<!-- Avatar -->
-				<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center border-2 border-primary-200">
-					<span class="text-primary-700 font-semibold text-sm md:text-base">SF</span>
-				</div>
-				<!-- User details - hidden on mobile -->
-				<div class="hidden md:flex flex-col text-left">
-					<span class="text-sm text-gray-950 leading-tight">Stéphane Fuchs</span>
-					<span class="text-sm text-gray-700 leading-tight">Administrateur</span>
-				</div>
-				<ChevronDown size={16} class="hidden md:block text-gray-500" />
-			</DropdownMenu.Trigger>
-
-			<DropdownMenu.Portal>
-				<DropdownMenu.Content 
-					class="z-50 min-w-[280px] bg-white rounded-2xl shadow-lg border border-gray-100 py-2 mt-2 animate-in fade-in-0 zoom-in-95"
-					sideOffset={8}
-					align="end"
-				>
-					<!-- User header -->
-					<div class="px-4 py-3 border-b border-gray-100">
-						<p class="text-sm font-medium text-gray-900">Stéphane Fuchs</p>
-						<p class="text-xs text-gray-500">stephane.fuchs@ams.ch</p>
+		{#if modeStore.current !== 'intervention'}
+			<!-- User info with dropdown -->
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity outline-none">
+					<!-- Avatar -->
+					<div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center border-2 border-primary-200">
+						<span class="text-primary-700 font-semibold text-sm md:text-base">SF</span>
 					</div>
+					<!-- User details - hidden on mobile -->
+					<div class="hidden md:flex flex-col text-left">
+						<span class="text-sm text-gray-950 leading-tight">Stéphane Fuchs</span>
+						<span class="text-sm text-gray-700 leading-tight">Administrateur</span>
+					</div>
+					<ChevronDown size={16} class="hidden md:block text-gray-500" />
+				</DropdownMenu.Trigger>
 
-					<!-- Mes données -->
-					<DropdownMenu.Group>
-						<DropdownMenu.GroupHeading class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-							Mes données
-						</DropdownMenu.GroupHeading>	
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<Pill size={16} />
-							Utilisation de médicaments
-						</DropdownMenu.Item>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<Shirt size={16} />
-							Mes équipements
-						</DropdownMenu.Item>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<GraduationCap size={16} />
-							Mes formations
-						</DropdownMenu.Item>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<History size={16} />
-							Historique d'accès
-						</DropdownMenu.Item>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<History size={16} />
-							Exporter mes données
-						</DropdownMenu.Item>
-					</DropdownMenu.Group>
+				<DropdownMenu.Portal>
+					<DropdownMenu.Content 
+						class="z-50 min-w-[280px] bg-white rounded-2xl shadow-lg border border-gray-100 py-2 mt-2 animate-in fade-in-0 zoom-in-95"
+						sideOffset={8}
+						align="end"
+					>
+						<!-- User header -->
+						<div class="px-4 py-3 border-b border-gray-100">
+							<p class="text-sm font-medium text-gray-900">Stéphane Fuchs</p>
+							<p class="text-xs text-gray-500">stephane.fuchs@ams.ch</p>
+						</div>
 
-					<DropdownMenu.Separator class="my-1 h-px bg-gray-100" />
+						<!-- Mes données -->
+						<DropdownMenu.Group>
+							<DropdownMenu.GroupHeading class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+								Mes données
+							</DropdownMenu.GroupHeading>	
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<Pill size={16} />
+								Utilisation de médicaments
+							</DropdownMenu.Item>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<Shirt size={16} />
+								Mes équipements
+							</DropdownMenu.Item>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<GraduationCap size={16} />
+								Mes formations
+							</DropdownMenu.Item>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<History size={16} />
+								Historique d'accès
+							</DropdownMenu.Item>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<History size={16} />
+								Exporter mes données
+							</DropdownMenu.Item>
+						</DropdownMenu.Group>
 
-					<!-- Médicaments -->
-					<DropdownMenu.Group>
-						<DropdownMenu.GroupHeading class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-							Mon profil
-						</DropdownMenu.GroupHeading>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<User size={16} />
-							Informations personnelles
+						<DropdownMenu.Separator class="my-1 h-px bg-gray-100" />
+
+						<!-- Médicaments -->
+						<DropdownMenu.Group>
+							<DropdownMenu.GroupHeading class="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+								Mon profil
+							</DropdownMenu.GroupHeading>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<User size={16} />
+								Informations personnelles
+							</DropdownMenu.Item>
+							<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
+								<User size={16} />
+								Settings
+							</DropdownMenu.Item>
+							
+						</DropdownMenu.Group>
+
+
+						<DropdownMenu.Separator class="my-1 h-px bg-gray-100" />
+
+						<!-- Déconnexion -->
+						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-error-600 hover:bg-error-50 cursor-pointer outline-none transition-colors">
+							<LogOut size={16} />
+							Déconnexion
 						</DropdownMenu.Item>
-						<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 cursor-pointer outline-none transition-colors">
-							<User size={16} />
-							Settings
-						</DropdownMenu.Item>
-						
-					</DropdownMenu.Group>
-
-
-					<DropdownMenu.Separator class="my-1 h-px bg-gray-100" />
-
-					<!-- Déconnexion -->
-					<DropdownMenu.Item class="flex items-center gap-3 px-4 py-2 text-sm text-error-600 hover:bg-error-50 cursor-pointer outline-none transition-colors">
-						<LogOut size={16} />
-						Déconnexion
-					</DropdownMenu.Item>
-				</DropdownMenu.Content>
-			</DropdownMenu.Portal>
-		</DropdownMenu.Root>
+					</DropdownMenu.Content>
+				</DropdownMenu.Portal>
+			</DropdownMenu.Root>
+		{/if}
 	</div>
 </nav>
 
