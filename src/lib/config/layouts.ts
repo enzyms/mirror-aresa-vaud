@@ -29,16 +29,15 @@ export const dashboardLayouts: DashboardLayouts = {
 	},
 	intervention: {
 		lg: [
-			['kpi-alerts', 'kpi-active-missions'],
-			['emergency-map', 'quick-actions'],
-			['active-interventions']
+			['intervention-current', 'intervention-shortcuts'],
+			['intervention-meds', 'intervention-equipment', 'intervention-quality']
 		],
 		sm: [
-			['kpi-alerts'],
-			['kpi-active-missions'],
-			['quick-actions'],
-			['emergency-map'],
-			['active-interventions']
+			['intervention-current'],
+			['intervention-shortcuts'],
+			['intervention-meds'],
+			['intervention-equipment'],
+			['intervention-quality']
 		]
 	}
 };

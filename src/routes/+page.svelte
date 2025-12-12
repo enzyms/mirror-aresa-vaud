@@ -26,9 +26,16 @@
 		Calendar,
 		ChevronRight,
 		Plus,
-		Siren,
+		Play,
 		MapPin,
-		Phone
+		Clock,
+		Timer,
+		Package,
+		Mic,
+		CheckCircle2,
+		Car,
+		Hospital,
+		Navigation2
 	} from 'lucide-svelte';
 
 	let isMobileMenuOpen = $state(false);
@@ -52,7 +59,7 @@
 	const formattedDate = today.toLocaleDateString('fr-FR', options);
 	const displayDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
-	// Static data for the dashboard
+	// Static data for the dashboard (Desktop mode)
 	const activities = [
 		{ time: '08:30', title: 'Formation secourisme - Équipe A', type: 'Formation', icon: Users },
 		{ time: '10:00', title: 'Contrôle véhicule AMB-12', type: 'Maintenance', icon: Ambulance },
@@ -105,83 +112,29 @@
 	// Card definitions for the grid system
 	const cards: CardDefinition[] = [
 		// Desktop mode KPIs
-		{
-			id: 'kpi-tasks',
-			visibleModes: ['desktop'],
-			component: kpiTasks
-		},
-		{
-			id: 'kpi-quality',
-			visibleModes: ['desktop'],
-			component: kpiQuality
-		},
-		{
-			id: 'kpi-equipment',
-			visibleModes: ['desktop'],
-			component: kpiEquipment
-		},
-		{
-			id: 'kpi-meds',
-			visibleModes: ['desktop'],
-			component: kpiMeds
-		},
+		{ id: 'kpi-tasks', visibleModes: ['desktop'], component: kpiTasks },
+		{ id: 'kpi-quality', visibleModes: ['desktop'], component: kpiQuality },
+		{ id: 'kpi-equipment', visibleModes: ['desktop'], component: kpiEquipment },
+		{ id: 'kpi-meds', visibleModes: ['desktop'], component: kpiMeds },
 		// Desktop mode cards
-		{
-			id: 'activities',
-			visibleModes: ['desktop'],
-			component: activitiesCard
-		},
-		{
-			id: 'quality-reports',
-			visibleModes: ['desktop'],
-			component: qualityReportsCard
-		},
-		{
-			id: 'stock',
-			visibleModes: ['desktop'],
-			component: stockCard
-		},
-		{
-			id: 'logbook',
-			visibleModes: ['desktop'],
-			component: logbookCard
-		},
-		{
-			id: 'shortcuts',
-			visibleModes: ['desktop'],
-			component: shortcutsCard
-		},
-		// Intervention mode KPIs
-		{
-			id: 'kpi-alerts',
-			visibleModes: ['intervention'],
-			component: kpiAlerts
-		},
-		{
-			id: 'kpi-active-missions',
-			visibleModes: ['intervention'],
-			component: kpiActiveMissions
-		},
+		{ id: 'activities', visibleModes: ['desktop'], component: activitiesCard },
+		{ id: 'quality-reports', visibleModes: ['desktop'], component: qualityReportsCard },
+		{ id: 'stock', visibleModes: ['desktop'], component: stockCard },
+		{ id: 'logbook', visibleModes: ['desktop'], component: logbookCard },
+		{ id: 'shortcuts', visibleModes: ['desktop'], component: shortcutsCard },
 		// Intervention mode cards
-		{
-			id: 'emergency-map',
-			visibleModes: ['intervention'],
-			component: emergencyMapCard
-		},
-		{
-			id: 'quick-actions',
-			visibleModes: ['intervention'],
-			component: quickActionsCard
-		},
-		{
-			id: 'active-interventions',
-			visibleModes: ['intervention'],
-			component: activeInterventionsCard
-		}
+		{ id: 'intervention-current', visibleModes: ['intervention'], component: interventionCurrentCard },
+		{ id: 'intervention-shortcuts', visibleModes: ['intervention'], component: interventionShortcutsCard },
+		{ id: 'intervention-meds', visibleModes: ['intervention'], component: interventionMedsCard },
+		{ id: 'intervention-equipment', visibleModes: ['intervention'], component: interventionEquipmentCard },
+		{ id: 'intervention-quality', visibleModes: ['intervention'], component: interventionQualityCard },
 	];
 </script>
 
+<!-- ========================================== -->
 <!-- Card Snippets for Desktop Mode -->
+<!-- ========================================== -->
+
 {#snippet kpiTasks()}
 	<KPICard 
 		label="Tâches en attente" 
@@ -345,88 +298,247 @@
 	</DashboardCard>
 {/snippet}
 
+<!-- ========================================== -->
 <!-- Card Snippets for Intervention Mode -->
-{#snippet kpiAlerts()}
-	<KPICard 
-		label="Alertes actives" 
-		value={3} 
-		trend="2 critiques" 
-		trendDirection="up"
-		icon={Siren}
-		iconColor="text-red-600"
-	/>
-{/snippet}
+<!-- ========================================== -->
 
-{#snippet kpiActiveMissions()}
-	<KPICard 
-		label="Missions en cours" 
-		value={5} 
-		trend="2 en attente" 
-		trendDirection="neutral"
-		icon={Ambulance}
-		iconColor="text-amber-600"
-	/>
-{/snippet}
-
-{#snippet emergencyMapCard()}
-	<DashboardCard class="h-auto min-h-[300px]">
+<!-- 1. Intervention en cours + Livre de bord -->
+{#snippet interventionCurrentCard()}
+	<DashboardCard>
 		<div class="p-5 flex flex-col h-full">
 			<div class="flex items-center justify-between mb-4">
-				<h3 class="text-base font-bold text-gray-900">Carte des interventions</h3>
+				<h3 class="text-base font-bold text-gray-900">Intervention en cours</h3>
+				<div class="flex items-center gap-2">
+					<Timer size={16} class="text-primary-600" />
+					<span class="text-sm font-mono font-bold text-primary-700">00:12:34</span>
+				</div>
 			</div>
-			<div class="flex-1 bg-gray-100 rounded-lg flex items-center justify-center">
-				<div class="text-center text-gray-500">
-					<MapPin size={48} class="mx-auto mb-2 opacity-50" />
-					<p class="text-sm">Carte interactive</p>
+			
+			<!-- Active Intervention -->
+			<div class="bg-primary-50 border border-primary-200 rounded-xl p-4 mb-4">
+				<div class="flex items-center justify-between mb-2">
+					<span class="text-xs font-semibold text-primary-600 uppercase tracking-wide">Dossier FIP</span>
+					<span class="text-sm font-mono font-bold text-primary-800">FIP-2024-08471</span>
+				</div>
+				<p class="text-sm font-medium text-gray-900 mb-1">Rue de Bourg 12, 1003 Lausanne</p>
+				<div class="flex items-center gap-3 mt-3">
+					<span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium flex items-center gap-1">
+						<Car size={12} />
+						En route
+					</span>
+				</div>
+			</div>
+
+			<!-- Alerts -->
+			<div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+				<div class="flex items-start gap-2">
+					<AlertTriangle size={16} class="text-red-600 shrink-0 mt-0.5" />
+					<div>
+						<p class="text-xs font-semibold text-red-800">Données manquantes</p>
+						<p class="text-xs text-red-600">Âge patient, motif d'appel</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Livre de bord - Recent entries -->
+			<div class="border-t border-gray-200 pt-4 mb-4">
+				<h4 class="text-sm font-semibold text-gray-700 mb-3">Livre de bord</h4>
+				<div class="space-y-2">
+					<div class="flex items-center gap-3">
+						<div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+							<Navigation2 size={12} class="text-emerald-600" />
+						</div>
+						<div class="flex-1 min-w-0">
+							<p class="text-xs font-medium text-gray-900">Départ base</p>
+						</div>
+						<span class="text-xs text-gray-500">08:45</span>
+					</div>
+					<div class="flex items-center gap-3">
+						<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+							<MapPin size={12} class="text-blue-600" />
+						</div>
+						<div class="flex-1 min-w-0">
+							<p class="text-xs font-medium text-gray-900">Arrivée sur place</p>
+						</div>
+						<span class="text-xs text-gray-500">08:58</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex gap-2 mt-auto">
+				<Btn variant="primary" size="md" icon={Play} class="flex-1 justify-center">
+					Reprendre
+				</Btn>
+				<Btn variant="secondary" size="md" icon={Plus} class="justify-center">
+					Entrée
+				</Btn>
+			</div>
+		</div>
+	</DashboardCard>
+{/snippet}
+
+<!-- 9. Raccourcis d'urgence -->
+{#snippet interventionShortcutsCard()}
+	<DashboardCard>
+		<div class="p-5 flex flex-col h-full">
+			<h3 class="text-base font-bold text-gray-900 mb-4">Raccourcis d'urgence</h3>
+			<p class="text-xs text-gray-500 mb-4">Mise à jour automatique FIP + Livre de bord</p>
+			
+			<div class="grid grid-cols-2 gap-3 flex-1">
+				<button class="flex flex-col items-center justify-center p-4 bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 rounded-xl transition-colors group">
+					<Navigation2 size={24} class="text-emerald-600 mb-2 group-hover:scale-110 transition-transform" />
+					<span class="text-sm font-semibold text-emerald-700">Départ</span>
+				</button>
+				<button class="flex flex-col items-center justify-center p-4 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 rounded-xl transition-colors group">
+					<MapPin size={24} class="text-blue-600 mb-2 group-hover:scale-110 transition-transform" />
+					<span class="text-sm font-semibold text-blue-700">Sur place</span>
+				</button>
+				<button class="flex flex-col items-center justify-center p-4 bg-amber-50 hover:bg-amber-100 border-2 border-amber-200 rounded-xl transition-colors group">
+					<Ambulance size={24} class="text-amber-600 mb-2 group-hover:scale-110 transition-transform" />
+					<span class="text-sm font-semibold text-amber-700">Transport</span>
+				</button>
+				<button class="flex flex-col items-center justify-center p-4 bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 rounded-xl transition-colors group">
+					<Hospital size={24} class="text-purple-600 mb-2 group-hover:scale-110 transition-transform" />
+					<span class="text-sm font-semibold text-purple-700">Hôpital</span>
+				</button>
+			</div>
+		</div>
+	</DashboardCard>
+{/snippet}
+
+<!-- 2. Médicaments : stock & médicaments utilisés -->
+{#snippet interventionMedsCard()}
+	<DashboardCard>
+		<div class="p-5 flex flex-col h-full">
+			<div class="flex items-center justify-between mb-4">
+				<h3 class="text-base font-bold text-gray-900">Médicaments</h3>
+				<a href="/medicaments" class="text-xs text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1">
+					Voir tout <ChevronRight size={14} />
+				</a>
+			</div>
+
+			<!-- Indicators -->
+			<div class="grid grid-cols-2 gap-2 mb-4">
+				<div class="bg-gray-50 rounded-lg p-2 text-center">
+					<p class="text-lg font-bold text-gray-900">24</p>
+					<p class="text-xs text-gray-500">En stock</p>
+				</div>
+				<div class="bg-red-50 rounded-lg p-2 text-center">
+					<p class="text-lg font-bold text-red-600">2</p>
+					<p class="text-xs text-red-600">Périmés</p>
+				</div>
+			</div>
+
+			<!-- Alert zone -->
+			<div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
+				<p class="text-xs font-semibold text-amber-800 mb-1">⚠️ Stupéfiants à contrôler</p>
+				<p class="text-xs text-amber-700">Morphine : écart détecté</p>
+			</div>
+
+			<!-- Quick actions -->
+			<div class="flex flex-col gap-2 mt-auto">
+				<Btn variant="secondary" size="sm" icon={Plus} class="w-full justify-center">
+					Médicament utilisé
+				</Btn>
+				<div class="flex gap-2">
+					<Btn variant="secondary" size="sm" icon={Package} class="flex-1 justify-center">
+						Mouvement
+					</Btn>
+					<Btn variant="secondary" size="sm" icon={CheckCircle2} class="flex-1 justify-center">
+						Contrôle
+					</Btn>
 				</div>
 			</div>
 		</div>
 	</DashboardCard>
 {/snippet}
 
-{#snippet quickActionsCard()}
+<!-- 4. Matériel / Véhicule – État rapide -->
+{#snippet interventionEquipmentCard()}
 	<DashboardCard>
 		<div class="p-5 flex flex-col h-full">
-			<h3 class="text-base font-bold text-gray-900 mb-4">Actions rapides</h3>
-			<div class="flex flex-col gap-3">
-				<Btn variant="primary" size="md" icon={Siren} class="w-full justify-center">
-					Nouvelle intervention
+			<div class="flex items-center justify-between mb-4">
+				<h3 class="text-base font-bold text-gray-900">Matériel / Véhicule</h3>
+			</div>
+
+			<!-- Status indicators -->
+			<div class="space-y-3 mb-4">
+				<div class="flex items-center justify-between">
+					<span class="text-sm text-gray-700">Oxygène (O₂)</span>
+					<div class="flex items-center gap-2">
+						<div class="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+							<div class="w-3/4 h-full bg-emerald-500 rounded-full"></div>
+						</div>
+						<span class="text-xs font-semibold text-emerald-600">75%</span>
+					</div>
+				</div>
+				<div class="flex items-center justify-between">
+					<span class="text-sm text-gray-700">Défibrillateur</span>
+					<span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">OK</span>
+				</div>
+				<div class="flex items-center justify-between">
+					<span class="text-sm text-gray-700">Matériel critique</span>
+					<span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">1 manquant</span>
+				</div>
+			</div>
+
+			<!-- Alert -->
+			<div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
+				<p class="text-xs font-semibold text-amber-800">Maintenance prévue</p>
+				<p class="text-xs text-amber-700">AMB-12 : contrôle dans 3 jours</p>
+			</div>
+
+			<!-- Actions -->
+			<div class="flex flex-col gap-2 mt-auto">
+				<Btn variant="secondary" size="sm" icon={AlertTriangle} class="w-full justify-center">
+					Déclarer une panne
 				</Btn>
-				<Btn variant="secondary" size="md" icon={Phone} class="w-full justify-center">
-					Appeler la centrale
-				</Btn>
-				<Btn variant="secondary" size="md" icon={AlertTriangle} class="w-full justify-center">
-					Signaler un incident
+				<Btn variant="secondary" size="sm" icon={CheckCircle2} class="w-full justify-center">
+					Vérifier matériel critique
 				</Btn>
 			</div>
 		</div>
 	</DashboardCard>
 {/snippet}
 
-{#snippet activeInterventionsCard()}
+<!-- 3. Déclarer un signalement qualité -->
+{#snippet interventionQualityCard()}
 	<DashboardCard>
 		<div class="p-5 flex flex-col h-full">
 			<div class="flex items-center justify-between mb-4">
-				<h3 class="text-base font-bold text-gray-900">Interventions actives</h3>
+				<h3 class="text-base font-bold text-gray-900">Signalement qualité</h3>
+				<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">2 ouverts</span>
 			</div>
-			<div class="space-y-3">
-				<div class="p-3 bg-red-50 border border-red-200 rounded-lg">
-					<div class="flex items-center justify-between mb-1">
-						<span class="text-sm font-semibold text-red-800">INT-2024-0847</span>
-						<span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">Urgent</span>
+
+			<!-- Quick categories -->
+			<div class="space-y-2 mb-4">
+				<button class="w-full flex items-center gap-3 p-3 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors text-left">
+					<AlertTriangle size={18} class="text-red-600 shrink-0" />
+					<div>
+						<p class="text-sm font-medium text-red-800">Incident</p>
+						<p class="text-xs text-red-600">Erreur, événement indésirable</p>
 					</div>
-					<p class="text-sm text-red-700">Accident route - Lausanne Centre</p>
-					<p class="text-xs text-red-600 mt-1">AMB-12 • En route</p>
-				</div>
-				<div class="p-3 bg-amber-50 border border-amber-200 rounded-lg">
-					<div class="flex items-center justify-between mb-1">
-						<span class="text-sm font-semibold text-amber-800">INT-2024-0846</span>
-						<span class="text-xs bg-amber-600 text-white px-2 py-0.5 rounded-full">En cours</span>
+				</button>
+				<button class="w-full flex items-center gap-3 p-3 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition-colors text-left">
+					<ShieldAlert size={18} class="text-amber-600 shrink-0" />
+					<div>
+						<p class="text-sm font-medium text-amber-800">Sécurité patient</p>
+						<p class="text-xs text-amber-600">Risque ou danger identifié</p>
 					</div>
-					<p class="text-sm text-amber-700">Malaise domicile - Prilly</p>
-					<p class="text-xs text-amber-600 mt-1">AMB-08 • Sur place</p>
-				</div>
+				</button>
+				<button class="w-full flex items-center gap-3 p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-left">
+					<Wrench size={18} class="text-blue-600 shrink-0" />
+					<div>
+						<p class="text-sm font-medium text-blue-800">Matériel / Procédure</p>
+						<p class="text-xs text-blue-600">Dysfonctionnement, amélioration</p>
+					</div>
+				</button>
 			</div>
+
+			<!-- Dictation shortcut -->
+			<Btn variant="secondary" size="sm" icon={Mic} class="w-full justify-center mt-auto">
+				Dicter un signalement
+			</Btn>
 		</div>
 	</DashboardCard>
 {/snippet}
@@ -440,7 +552,7 @@
 	<Navigation onMenuToggle={toggleMobileMenu} {isMobileMenuOpen} />
 
 	<!-- Main Content Area -->
-	<div class="flex flex-1 gap-3">
+	<div class="flex flex-1">
 		<!-- Sidebar -->
 		<div class="hidden lg:block shrink-0">
 			<Sidebar isOpen={true} />
@@ -463,7 +575,7 @@
 			<PageSubTitle>{displayDate}</PageSubTitle>
 
 			<!-- Dashboard Content -->
-			<div class="px-4 md:px-10 lg:px-20 pb-8">
+			<div class="px-4 md:px-8 xl:px-20 pb-8">
 				<DashboardGrid {cards} />
 			</div>
 		</main>

@@ -25,7 +25,7 @@
 	<Navigation onMenuToggle={toggleMobileMenu} {isMobileMenuOpen} />
 
 	<!-- Main Content Area -->
-	<div class="flex flex-1 gap-3">
+	<div class="flex flex-1">
 		<!-- Sidebar -->
 		<div class="hidden lg:block shrink-0">
 			<Sidebar isOpen={true} />
@@ -48,7 +48,7 @@
 			<PageSubTitle>Signalements et gestion de la qualité.</PageSubTitle>
 
 			<!-- Placeholder content -->
-			<div class="px-4 md:px-10 lg:px-20 pb-4 flex-1 flex flex-col">
+			<div class="px-4 md:px-8 xl:px-20 pb-4 flex-1 flex flex-col">
 				<DashboardCard class="flex-1 h-auto" />
 			</div>
 		</main>

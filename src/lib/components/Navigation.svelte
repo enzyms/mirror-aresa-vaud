@@ -32,7 +32,7 @@
 	</div>
 
 	<!-- Search bar - hidden on mobile -->
-	<div class="hidden md:flex items-center justify-between w-[400px] lg:w-[500px] h-12 border border-gray-200 focus-within:border-primary-200 focus-within:outline-solid focus-within:outline-primary-200 rounded-full pl-5 pr-3 py-0.5">
+	<div class="hidden lg:flex mx-4 items-center justify-between w-[400px] lg:w-[500px] h-12 border border-gray-200 focus-within:border-primary-200 focus-within:outline-solid focus-within:outline-primary-200 rounded-full pl-5 pr-3 py-0.5">
 		<input 
 			type="text" 
 			placeholder="Rechercher"
@@ -46,7 +46,7 @@
 	<!-- User navigation -->
 	<div class="flex items-center gap-3 md:gap-5">
 		<!-- Mobile search button -->
-		<button class="md:hidden p-2 text-gray-600 hover:text-primary-700 transition-colors">
+		<button class="lg:hidden p-2 text-gray-600 hover:text-primary-700 transition-colors">
 			<Search size={20} />
 		</button>
 		
