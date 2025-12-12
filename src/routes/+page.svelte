@@ -35,8 +35,11 @@
 		CheckCircle2,
 		Car,
 		Hospital,
-		Navigation2
+		Navigation2,
+		MoreVertical,
+		ExternalLink,
 	} from 'lucide-svelte';
+	import { modeStore } from '$lib/stores/mode.svelte';
 
 	let isMobileMenuOpen = $state(false);
 
@@ -124,7 +127,6 @@
 		{ id: 'shortcuts', visibleModes: ['desktop'], component: shortcutsCard },
 		// Intervention mode cards
 		{ id: 'intervention-current', visibleModes: ['intervention'], component: interventionCurrentCard },
-		{ id: 'intervention-shortcuts', visibleModes: ['intervention'], component: interventionShortcutsCard },
 		{ id: 'intervention-meds', visibleModes: ['intervention'], component: interventionMedsCard },
 		{ id: 'intervention-equipment', visibleModes: ['intervention'], component: interventionEquipmentCard },
 		{ id: 'intervention-quality', visibleModes: ['intervention'], component: interventionQualityCard },
@@ -305,102 +307,83 @@
 <!-- 1. Intervention en cours + Livre de bord -->
 {#snippet interventionCurrentCard()}
 	<DashboardCard>
-		<div class="p-5 flex flex-col h-full">
-			<div class="flex items-center justify-between mb-4">
-				<h3 class="text-base font-bold text-gray-900">Intervention en cours</h3>
-				<div class="flex items-center gap-2">
-					<Timer size={16} class="text-primary-600" />
-					<span class="text-sm font-mono font-bold text-primary-700">00:12:34</span>
+		<div class="p-5 grid grid-cols-1 xl:grid-cols-[1fr_1fr] gap-6 h-full">
+			<!-- Left column: Intervention info + Logbook -->
+			<div class="flex flex-col">
+				<div class="flex items-center justify-between mb-4">
+					<h3 class="text-base font-bold text-gray-900">Intervention en cours</h3>
+					<div class="flex items-center gap-2">
+						<Timer size={16} class="text-primary-600" />
+						<span class="text-sm font-mono font-bold text-primary-700">00:12:34</span>
+					</div>
 				</div>
-			</div>
-			
-			<!-- Active Intervention -->
-			<div class="bg-primary-50 border border-primary-200 rounded-xl p-4 mb-4">
-				<div class="flex items-center justify-between mb-2">
-					<span class="text-xs font-semibold text-primary-600 uppercase tracking-wide">Dossier FIP</span>
-					<span class="text-sm font-mono font-bold text-primary-800">FIP-2024-08471</span>
+				
+				<!-- Active Intervention -->
+				<div class="bg-primary-50 border border-primary-200 rounded-xl px-4 py-3 mb-4 hover:bg-primary-100 transition-colors cursor-pointer">
+					<div class="flex items-center justify-between">
+						<span class="text-sm font-mono font-bold text-primary-800">FIP-2025-08471</span>
+						<Btn variant="secondary" size="md" icon={ExternalLink} class="justify-center px-2.5!">
+							<span class="sr-only">Ouvrir</span>
+						</Btn>
+					</div>
+					<p class="text-sm font-medium text-gray-900">Rue de Bourg 12, 1003 Lausanne</p>
 				</div>
-				<p class="text-sm font-medium text-gray-900 mb-1">Rue de Bourg 12, 1003 Lausanne</p>
-				<div class="flex items-center gap-3 mt-3">
-					<span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium flex items-center gap-1">
-						<Car size={12} />
-						En route
-					</span>
-				</div>
-			</div>
 
-			<!-- Alerts -->
-			<div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-				<div class="flex items-start gap-2">
-					<AlertTriangle size={16} class="text-red-600 shrink-0 mt-0.5" />
-					<div>
-						<p class="text-xs font-semibold text-red-800">Données manquantes</p>
-						<p class="text-xs text-red-600">Âge patient, motif d'appel</p>
+				<!-- Livre de bord - Recent entries -->
+				<div class="border-t border-gray-200 pt-4 flex-1">
+					<h4 class="text-sm font-semibold text-gray-700 mb-3">Livre de bord</h4>
+					<div class="space-y-2">
+						<div class="flex items-center gap-3">
+							<div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+								<Navigation2 size={12} class="text-emerald-600" />
+							</div>
+							<div class="flex-1 min-w-0">
+								<p class="text-xs font-medium text-gray-900">Départ base</p>
+							</div>
+							<span class="text-xs text-gray-500">08:45</span>
+						</div>
+						<div class="flex items-center gap-3">
+							<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+								<MapPin size={12} class="text-blue-600" />
+							</div>
+							<div class="flex-1 min-w-0">
+								<p class="text-xs font-medium text-gray-900">Arrivée sur place</p>
+							</div>
+							<span class="text-xs text-gray-500">08:58</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- Livre de bord - Recent entries -->
-			<div class="border-t border-gray-200 pt-4 mb-4">
-				<h4 class="text-sm font-semibold text-gray-700 mb-3">Livre de bord</h4>
-				<div class="space-y-2">
-					<div class="flex items-center gap-3">
-						<div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-							<Navigation2 size={12} class="text-emerald-600" />
-						</div>
-						<div class="flex-1 min-w-0">
-							<p class="text-xs font-medium text-gray-900">Départ base</p>
-						</div>
-						<span class="text-xs text-gray-500">08:45</span>
-					</div>
-					<div class="flex items-center gap-3">
-						<div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-							<MapPin size={12} class="text-blue-600" />
-						</div>
-						<div class="flex-1 min-w-0">
-							<p class="text-xs font-medium text-gray-900">Arrivée sur place</p>
-						</div>
-						<span class="text-xs text-gray-500">08:58</span>
-					</div>
+			<!-- Right column: Quick actions -->
+			<div class="xl:border-l xl:border-gray-200 xl:pl-6">
+				<h4 class="text-sm font-semibold text-gray-700 mb-3">Entrées rapides</h4>
+				<div class="grid grid-cols-2 gap-3">
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-emerald-100 hover:bg-emerald-200 border-2 border-emerald-300 rounded-xl transition-colors group">
+						<Navigation2 size={24} class="text-emerald-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-emerald-800">Départ</span>
+					</button>
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-blue-100 hover:bg-blue-200 border-2 border-blue-300 rounded-xl transition-colors group">
+						<MapPin size={24} class="text-blue-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-blue-800">Sur place</span>
+					</button>
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-rose-100 hover:bg-rose-200 border-2 border-rose-300 rounded-xl transition-colors group">
+						<Pill size={24} class="text-rose-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-rose-800">Médicament</span>
+					</button>
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-violet-100 hover:bg-violet-200 border-2 border-violet-300 rounded-xl transition-colors group">
+						<Mic size={24} class="text-violet-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-violet-800">Note</span>
+					</button>
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 rounded-xl transition-colors group">
+						<Ambulance size={24} class="text-orange-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-orange-800">Transport</span>
+					</button>
+					<button class="flex flex-col items-center justify-center p-3 xl:p-4 bg-cyan-100 hover:bg-cyan-200 border-2 border-cyan-300 rounded-xl transition-colors group">
+						<Hospital size={24} class="text-cyan-700 mb-1 group-hover:scale-110 transition-transform" />
+						<span class="font-semibold text-cyan-800">Hôpital</span>
+					</button>
 				</div>
-			</div>
-
-			<div class="flex gap-2 mt-auto">
-				<Btn variant="primary" size="md" icon={Play} class="flex-1 justify-center">
-					Reprendre
-				</Btn>
-				<Btn variant="secondary" size="md" icon={Plus} class="justify-center">
-					Entrée
-				</Btn>
-			</div>
-		</div>
-	</DashboardCard>
-{/snippet}
-
-<!-- 9. Raccourcis d'urgence -->
-{#snippet interventionShortcutsCard()}
-	<DashboardCard>
-		<div class="p-5 flex flex-col h-full">
-			<h3 class="text-base font-bold text-gray-900 mb-4">Raccourcis d'urgence</h3>
-			<p class="text-xs text-gray-500 mb-4">Mise à jour automatique FIP + Livre de bord</p>
-			
-			<div class="grid grid-cols-2 gap-3 flex-1">
-				<button class="flex flex-col items-center justify-center p-4 bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 rounded-xl transition-colors group">
-					<Navigation2 size={24} class="text-emerald-600 mb-2 group-hover:scale-110 transition-transform" />
-					<span class="text-sm font-semibold text-emerald-700">Départ</span>
-				</button>
-				<button class="flex flex-col items-center justify-center p-4 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 rounded-xl transition-colors group">
-					<MapPin size={24} class="text-blue-600 mb-2 group-hover:scale-110 transition-transform" />
-					<span class="text-sm font-semibold text-blue-700">Sur place</span>
-				</button>
-				<button class="flex flex-col items-center justify-center p-4 bg-amber-50 hover:bg-amber-100 border-2 border-amber-200 rounded-xl transition-colors group">
-					<Ambulance size={24} class="text-amber-600 mb-2 group-hover:scale-110 transition-transform" />
-					<span class="text-sm font-semibold text-amber-700">Transport</span>
-				</button>
-				<button class="flex flex-col items-center justify-center p-4 bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 rounded-xl transition-colors group">
-					<Hospital size={24} class="text-purple-600 mb-2 group-hover:scale-110 transition-transform" />
-					<span class="text-sm font-semibold text-purple-700">Hôpital</span>
-				</button>
 			</div>
 		</div>
 	</DashboardCard>
@@ -565,17 +548,14 @@
 
 		<!-- Main Content -->
 		<main class="flex-1 bg-gray-50 overflow-hidden">
-			<!-- Breadcrumb -->
-			<Breadcrumb items={[{ label: 'Accueil'}]} />
-
-			<!-- Title -->
-			<PageTitle title="Tableau de bord" />
-
-			<!-- Date -->
-			<PageSubTitle>{displayDate}</PageSubTitle>
+			{#if modeStore.current !== 'intervention'}
+				<Breadcrumb items={[{ label: 'Accueil'}]} />
+				<PageTitle title="Tableau de bord" />
+				<PageSubTitle>{displayDate}</PageSubTitle>
+			{/if}
 
 			<!-- Dashboard Content -->
-			<div class="px-4 md:px-8 xl:px-20 pb-8">
+			<div class="px-4 md:px-8 xl:px-20 pb-8" class:pt-6={modeStore.current === 'intervention'}>
 				<DashboardGrid {cards} />
 			</div>
 		</main>

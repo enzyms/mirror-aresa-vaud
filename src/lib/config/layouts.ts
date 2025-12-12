@@ -29,12 +29,11 @@ export const dashboardLayouts: DashboardLayouts = {
 	},
 	intervention: {
 		lg: [
-			['intervention-current', 'intervention-shortcuts'],
+			['intervention-current'],
 			['intervention-meds', 'intervention-equipment', 'intervention-quality']
 		],
 		sm: [
 			['intervention-current'],
-			['intervention-shortcuts'],
 			['intervention-meds'],
 			['intervention-equipment'],
 			['intervention-quality']
