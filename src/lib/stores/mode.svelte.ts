@@ -6,8 +6,30 @@ export const modes = [
 
 export type ModeId = typeof modes[number]['id'];
 
+const STORAGE_KEY = 'aresa-mode';
+
+// Initialize from localStorage or default to 'desktop'
+function getInitialMode(): ModeId {
+	if (typeof localStorage !== 'undefined') {
+		const stored = localStorage.getItem(STORAGE_KEY);
+		if (stored === 'desktop' || stored === 'intervention') {
+			return stored;
+		}
+	}
+	return 'desktop';
+}
+
 // Reactive state using Svelte 5 runes
-let _currentMode = $state<ModeId>('desktop');
+let _currentMode = $state<ModeId>(getInitialMode());
+
+// Persist to localStorage when mode changes
+$effect.root(() => {
+	$effect(() => {
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem(STORAGE_KEY, _currentMode);
+		}
+	});
+});
 
 export function getCurrentMode(): ModeId {
 	return _currentMode;
