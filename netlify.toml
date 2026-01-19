@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Branch deploy settings
+[context.v1-prototype]
+  command = "npm run build"
+
+# Dev settings
+[dev]
+  command = "npm run dev"
+  port = 5173
+  autoLaunch = false
