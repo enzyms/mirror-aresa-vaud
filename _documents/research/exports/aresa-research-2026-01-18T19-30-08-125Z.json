@@ -1,0 +1,693 @@
+{
+  "exportDate": "2026-01-18T19:30:08.123Z",
+  "items": [
+    {
+      "question": {
+        "id": "env-1",
+        "category": "environment",
+        "text": "Zone de contrôle dans l'ambulance - où serait monté une tablette?",
+        "type": "checkbox",
+        "captureHint": "Photo grand angle"
+      },
+      "checked": true,
+      "notes": "",
+      "files": [
+        {
+          "id": "file-1768764482093",
+          "name": "env/env-1_photo_2026-01-18T19-28-02-092Z.jpg",
+          "type": "photo",
+          "timestamp": "2026-01-18T19:28:02.093Z",
+          "saved": true
+        },
+        {
+          "id": "file-1768764505194",
+          "name": "env/env-1_audio_2026-01-18T19-28-25-194Z.webm",
+          "type": "audio",
+          "timestamp": "2026-01-18T19:28:25.194Z",
+          "saved": true
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": "env-2",
+        "category": "environment",
+        "text": "Conditions de luminosité - soleil direct vs opérations de nuit",
+        "type": "checkbox",
+        "captureHint": "Photos comparatives"
+      },
+      "checked": false,
+      "notes": "",
+      "files": [
+        {
+          "id": "file-1768764555499",
+          "name": "env/env-2_audio_2026-01-18T19-29-15-499Z.webm",
+          "type": "audio",
+          "timestamp": "2026-01-18T19:29:15.499Z",
+          "saved": true
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": "env-3",
+        "category": "environment",
+        "text": "Surfaces disponibles - où posent-ils les appareils actuellement?",
+        "type": "checkbox",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-4",
+        "category": "environment",
+        "text": "Rangement des gants - portent-ils des gants en documentant?",
+        "type": "checkbox",
+        "captureHint": "Observation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-5",
+        "category": "environment",
+        "text": "Écrans/appareils existants - qu'y a-t-il déjà?",
+        "type": "checkbox",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-6",
+        "category": "environment",
+        "text": "Postes de travail à la base - configuration desktop, multi-écrans?",
+        "type": "checkbox",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-7",
+        "category": "environment",
+        "text": "Zone de stockage médicaments - organisation actuelle",
+        "type": "checkbox",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-8",
+        "category": "environment",
+        "text": "Local équipement - comment tracent-ils ce qui est où?",
+        "type": "checkbox",
+        "captureHint": "Photo + Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-1",
+        "category": "intervention",
+        "text": "Parcours complet d'une intervention typique du dispatch au retour",
+        "type": "interview",
+        "captureHint": "Vidéo avec narration"
+      },
+      "checked": true,
+      "notes": "Cool texte ",
+      "files": [
+        {
+          "id": "file-1768764268413",
+          "name": "int/int-1_photo_2026-01-18T19-24-28-413Z.jpg",
+          "type": "photo",
+          "timestamp": "2026-01-18T19:24:28.413Z",
+          "saved": true
+        },
+        {
+          "id": "file-1768764292106",
+          "name": "int/int-1_audio_2026-01-18T19-24-52-106Z.webm",
+          "type": "audio",
+          "timestamp": "2026-01-18T19:24:52.106Z",
+          "saved": true
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": "int-2",
+        "category": "intervention",
+        "text": "Quelle information vérifient-ils EN PREMIER quand le dispatch arrive?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-3",
+        "category": "intervention",
+        "text": "Comment enregistrent-ils les horodatages actuellement? (Papier? Voix? Mémoire?)",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-4",
+        "category": "intervention",
+        "text": "Quand documentent-ils l'utilisation de médicaments - pendant ou après?",
+        "type": "interview",
+        "captureHint": "Audio - CRITIQUE"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-5",
+        "category": "intervention",
+        "text": "Quelle est la documentation la plus urgente temporellement?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-6",
+        "category": "intervention",
+        "text": "DÉPART - À quel moment exact est-ce logué?",
+        "type": "observation",
+        "captureHint": "Observation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-7",
+        "category": "intervention",
+        "text": "ARRIVÉE - Sur place? À l'hôpital? Les deux?",
+        "type": "observation",
+        "captureHint": "Observation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-8",
+        "category": "intervention",
+        "text": "Actions manquantes dans les quick actions actuelles?",
+        "type": "interview",
+        "captureHint": "Audio - Liste"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-1",
+        "category": "medication",
+        "text": "Comment tracent-ils l'utilisation de médicaments pendant l'intervention?",
+        "type": "interview",
+        "captureHint": "Audio + Démo si possible"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-2",
+        "category": "medication",
+        "text": "Processus actuel pour les stupéfiants (substances contrôlées)?",
+        "type": "interview",
+        "captureHint": "Audio - COMPLIANCE"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-3",
+        "category": "medication",
+        "text": "Fréquence des écarts de stock?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-4",
+        "category": "medication",
+        "text": "Qu'est-ce qui déclenche une alerte de stock actuellement?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-5",
+        "category": "medication",
+        "text": "Liaison numéro FIP - comment référencent-ils les dossiers patients?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-6",
+        "category": "medication",
+        "text": "Qu'est-ce qui est frustrant dans le logging médicaments actuel?",
+        "type": "interview",
+        "captureHint": "Audio - Pain point"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-7",
+        "category": "medication",
+        "text": "Problèmes de double saisie?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-1",
+        "category": "equipment",
+        "text": "Comment vérifient-ils la disponibilité du véhicule en début de service?",
+        "type": "observation",
+        "captureHint": "Vidéo du processus"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-2",
+        "category": "equipment",
+        "text": "Monitoring du niveau d'oxygène - comment est-ce affiché?",
+        "type": "checkbox",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-3",
+        "category": "equipment",
+        "text": "Vérifications du défibrillateur - fréquence?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-4",
+        "category": "equipment",
+        "text": "Pannes d'équipement les plus fréquentes?",
+        "type": "interview",
+        "captureHint": "Audio - Liste"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-5",
+        "category": "equipment",
+        "text": "Comment signalent-ils une panne aujourd'hui?",
+        "type": "interview",
+        "captureHint": "Audio + Démo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-6",
+        "category": "equipment",
+        "text": "Qui est notifié lors d'une panne?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-7",
+        "category": "equipment",
+        "text": "Niveau d'urgence de cette communication?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-1",
+        "category": "quality",
+        "text": "Dernier incident qualité signalé - racontez-moi",
+        "type": "interview",
+        "captureHint": "Audio - Histoire complète"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-2",
+        "category": "quality",
+        "text": "Combien de temps après l'événement font-ils le signalement?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-3",
+        "category": "quality",
+        "text": "Qu'est-ce qui empêche un signalement rapide?",
+        "type": "interview",
+        "captureHint": "Audio - Pain point"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-4",
+        "category": "quality",
+        "text": "Préoccupations de confidentialité - hésitent-ils à signaler?",
+        "type": "interview",
+        "captureHint": "Audio - Sensible"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-5",
+        "category": "quality",
+        "text": "Catégories actuelles: Incident / Sécurité patient / Matériel - sont-elles correctes?",
+        "type": "interview",
+        "captureHint": "Audio - Validation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-1",
+        "category": "handoff",
+        "text": "Quelles informations passent entre les équipes?",
+        "type": "observation",
+        "captureHint": "Vidéo si possible"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-2",
+        "category": "handoff",
+        "text": "Durée de la relève?",
+        "type": "observation",
+        "captureHint": "Noter"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-3",
+        "category": "handoff",
+        "text": "Qu'est-ce qui se perd lors des relèves?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-4",
+        "category": "handoff",
+        "text": "Utilisent-ils le livre de bord?",
+        "type": "interview",
+        "captureHint": "Audio + Screenshot"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-5",
+        "category": "handoff",
+        "text": "Comment transmettent-ils les tâches en attente?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-1",
+        "category": "students",
+        "text": "Comment les mentors suivent-ils la progression des étudiants actuellement?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-2",
+        "category": "students",
+        "text": "Observation vs pratique - comment est-ce documenté?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-3",
+        "category": "students",
+        "text": "Timing du feedback - temps réel ou fin de service?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-4",
+        "category": "students",
+        "text": "Suivi des compétences - quel système existe?",
+        "type": "interview",
+        "captureHint": "Audio + Screenshot"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-1",
+        "category": "multisite",
+        "text": "Le personnel travaille-t-il sur plusieurs bases?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-2",
+        "category": "multisite",
+        "text": "Comment fonctionne la sélection de base actuellement?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-3",
+        "category": "multisite",
+        "text": "Besoins d'information spécifiques au site vs globaux?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-4",
+        "category": "multisite",
+        "text": "Comment sont distribuées les annonces aujourd'hui?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-1",
+        "category": "painpoints",
+        "text": "Qu'est-ce qui est LE PIRE dans votre logiciel actuel?",
+        "type": "interview",
+        "captureHint": "Audio - Laisser parler"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-2",
+        "category": "painpoints",
+        "text": "Si vous pouviez changer UNE chose, ce serait quoi?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-3",
+        "category": "painpoints",
+        "text": "Quels formulaires papier utilisez-vous encore? Pourquoi?",
+        "type": "interview",
+        "captureHint": "Audio + Photos"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-4",
+        "category": "painpoints",
+        "text": "Quand la technologie vous ralentit-elle?",
+        "type": "interview",
+        "captureHint": "Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-5",
+        "category": "painpoints",
+        "text": "Screenshots/photos des interfaces actuelles",
+        "type": "checkbox",
+        "captureHint": "Photos - IMPORTANT"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-6",
+        "category": "painpoints",
+        "text": "Workarounds qu'ils ont créés",
+        "type": "observation",
+        "captureHint": "Photos + Audio"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    }
+  ],
+  "customQuestions": [],
+  "profiles": []
+}

@@ -1,0 +1,708 @@
+{
+  "exportDate": "2026-01-19T07:56:21.460Z",
+  "items": [
+    {
+      "question": {
+        "id": "gen-1",
+        "category": "general",
+        "text": "Quel est votre rôle? (AD, TA, étudiant, autre)",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-2",
+        "category": "general",
+        "text": "Depuis combien de temps travaillez-vous ici?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-3",
+        "category": "general",
+        "text": "C'est quoi une journée typique pour vous?",
+        "type": "interview",
+        "captureHint": "Laisser raconter"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-4",
+        "category": "general",
+        "text": "Combien de personnes travaillent sur cette base?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-5",
+        "category": "general",
+        "text": "Quels sont les différents rôles dans l'équipe?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-6",
+        "category": "general",
+        "text": "Description des locaux - entrée, vestiaires, salle de repos",
+        "type": "observation",
+        "captureHint": "Photos des espaces"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-7",
+        "category": "general",
+        "text": "Où sont garées les ambulances?",
+        "type": "observation",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "Dans le garage",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "gen-8",
+        "category": "general",
+        "text": "Comment s'organise une garde? Horaires, rotations?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-1",
+        "category": "environment",
+        "text": "Où posez-vous votre téléphone ou tablette dans l'ambulance?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-2",
+        "category": "environment",
+        "text": "La luminosité pose problème pour lire un écran? Jour et nuit?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-3",
+        "category": "environment",
+        "text": "Et sur le terrain, vous posez vos appareils où?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-4",
+        "category": "environment",
+        "text": "Vous portez des gants quand vous utilisez un écran?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-5",
+        "category": "environment",
+        "text": "Quels écrans ou appareils avez-vous déjà dans l'ambulance?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-6",
+        "category": "environment",
+        "text": "Montrez-moi votre poste de travail à la base.",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-7",
+        "category": "environment",
+        "text": "Comment sont rangés les médicaments?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "env-8",
+        "category": "environment",
+        "text": "Comment savez-vous où se trouve chaque équipement?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-1",
+        "category": "intervention",
+        "text": "Racontez-moi une intervention typique, de l'appel jusqu'au retour.",
+        "type": "interview",
+        "captureHint": "Laisser raconter"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-2",
+        "category": "intervention",
+        "text": "Quand vous recevez un appel, c'est quoi la première info que vous regardez?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-3",
+        "category": "intervention",
+        "text": "Comment notez-vous les heures pendant une intervention?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-4",
+        "category": "intervention",
+        "text": "Quand vous donnez un médicament, vous le notez tout de suite ou après?",
+        "type": "interview",
+        "captureHint": "Question clé"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-5",
+        "category": "intervention",
+        "text": "Qu'est-ce que vous devez absolument noter rapidement?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-6",
+        "category": "intervention",
+        "text": "L'heure de départ, vous la notez quand exactement?",
+        "type": "observation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-7",
+        "category": "intervention",
+        "text": "Vous notez l'arrivée sur place? Et à l'hôpital?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "int-8",
+        "category": "intervention",
+        "text": "Quelles actions rapides vous manquent dans votre système?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-1",
+        "category": "medication",
+        "text": "Comment notez-vous les médicaments utilisés pendant une intervention?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-2",
+        "category": "medication",
+        "text": "Pour les stupéfiants, c'est quoi le processus?",
+        "type": "interview",
+        "captureHint": "Compliance"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-3",
+        "category": "medication",
+        "text": "Ça arrive souvent d'avoir des écarts de stock?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-4",
+        "category": "medication",
+        "text": "Comment êtes-vous alerté quand il manque quelque chose?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-5",
+        "category": "medication",
+        "text": "Comment reliez-vous le médicament au dossier patient?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-6",
+        "category": "medication",
+        "text": "Qu'est-ce qui vous agace le plus dans la documentation des médicaments?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "med-7",
+        "category": "medication",
+        "text": "Vous saisissez parfois la même info plusieurs fois?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-1",
+        "category": "equipment",
+        "text": "Comment vérifiez-vous que tout est en ordre au début du service?",
+        "type": "interview",
+        "captureHint": "Photo checklist"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-2",
+        "category": "equipment",
+        "text": "Comment voyez-vous le niveau d'oxygène?",
+        "type": "interview",
+        "captureHint": "Photo"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-3",
+        "category": "equipment",
+        "text": "Le défibrillateur, vous le vérifiez à quelle fréquence?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-4",
+        "category": "equipment",
+        "text": "Quel équipement tombe le plus souvent en panne?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-5",
+        "category": "equipment",
+        "text": "Comment signalez-vous une panne?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-6",
+        "category": "equipment",
+        "text": "Qui est prévenu quand il y a une panne?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "equip-7",
+        "category": "equipment",
+        "text": "Une panne, ça doit être signalé tout de suite ou ça peut attendre?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-1",
+        "category": "quality",
+        "text": "Racontez-moi le dernier incident que vous avez signalé.",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-2",
+        "category": "quality",
+        "text": "En général, vous faites le signalement combien de temps après?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-3",
+        "category": "quality",
+        "text": "Qu'est-ce qui vous empêche de signaler rapidement?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-4",
+        "category": "quality",
+        "text": "Il y a des choses que vous hésitez à signaler?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "qual-5",
+        "category": "quality",
+        "text": "Les catégories de signalement actuelles sont adaptées?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-1",
+        "category": "handoff",
+        "text": "Qu'est-ce que vous transmettez à l'équipe qui vous remplace?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-2",
+        "category": "handoff",
+        "text": "Une relève, ça dure combien de temps?",
+        "type": "observation"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-3",
+        "category": "handoff",
+        "text": "Qu'est-ce qui se perd souvent lors d'une relève?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-4",
+        "category": "handoff",
+        "text": "Vous utilisez un carnet ou livre de bord?",
+        "type": "interview",
+        "captureHint": "Photo si oui"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "hand-5",
+        "category": "handoff",
+        "text": "Les tâches en cours, comment vous les transmettez?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-1",
+        "category": "students",
+        "text": "Comment suivez-vous la progression d'un étudiant?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-2",
+        "category": "students",
+        "text": "Quand l'étudiant observe vs quand il pratique, vous le notez?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-3",
+        "category": "students",
+        "text": "Le feedback, vous le donnez sur le moment ou en fin de service?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "stud-4",
+        "category": "students",
+        "text": "Il y a un système pour suivre les compétences acquises?",
+        "type": "interview",
+        "captureHint": "Photo si oui"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-1",
+        "category": "multisite",
+        "text": "Vous travaillez parfois sur d'autres bases?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-2",
+        "category": "multisite",
+        "text": "Comment choisissez-vous votre base au début du service?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-3",
+        "category": "multisite",
+        "text": "Chaque base a ses propres infos ou c'est pareil partout?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "multi-4",
+        "category": "multisite",
+        "text": "Comment recevez-vous les annonces?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-1",
+        "category": "painpoints",
+        "text": "C'est quoi le plus frustrant dans vos outils actuels?",
+        "type": "interview",
+        "captureHint": "Laisser parler"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-2",
+        "category": "painpoints",
+        "text": "Si vous pouviez changer une seule chose, ce serait quoi?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-3",
+        "category": "painpoints",
+        "text": "Qu'est-ce que vous faites encore sur papier?",
+        "type": "interview",
+        "captureHint": "Photo des papiers"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-4",
+        "category": "painpoints",
+        "text": "Dans quelles situations la technologie vous ralentit?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-5",
+        "category": "painpoints",
+        "text": "Montrez-moi les interfaces que vous utilisez.",
+        "type": "interview",
+        "captureHint": "Photo écrans"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    },
+    {
+      "question": {
+        "id": "pain-6",
+        "category": "painpoints",
+        "text": "Vous avez inventé des astuces pour aller plus vite?",
+        "type": "interview"
+      },
+      "checked": false,
+      "notes": "",
+      "files": []
+    }
+  ],
+  "customQuestions": [],
+  "profiles": []
+}
