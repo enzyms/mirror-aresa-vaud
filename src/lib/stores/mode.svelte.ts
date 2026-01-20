@@ -1,3 +1,5 @@
+import { browser } from '$app/environment';
+
 // Shared mode state across the application
 export const modes = [
 	{ id: 'desktop', label: 'Bureau', icon: 'Monitor' },
@@ -10,7 +12,7 @@ const STORAGE_KEY = 'aresa-mode';
 
 // Initialize from localStorage or default to 'desktop'
 function getInitialMode(): ModeId {
-	if (typeof localStorage !== 'undefined') {
+	if (browser) {
 		const stored = localStorage.getItem(STORAGE_KEY);
 		if (stored === 'desktop' || stored === 'intervention') {
 			return stored;
@@ -25,7 +27,7 @@ let _currentMode = $state<ModeId>(getInitialMode());
 // Persist to localStorage when mode changes
 $effect.root(() => {
 	$effect(() => {
-		if (typeof localStorage !== 'undefined') {
+		if (browser) {
 			localStorage.setItem(STORAGE_KEY, _currentMode);
 		}
 	});
