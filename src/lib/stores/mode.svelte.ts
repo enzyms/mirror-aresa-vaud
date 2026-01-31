@@ -6,32 +6,38 @@ export const modes = [
 	{ id: 'intervention', label: 'Intervention', icon: 'Siren' },
 ] as const;
 
-export type ModeId = typeof modes[number]['id'];
+export type ModeId = (typeof modes)[number]['id'];
 
 const STORAGE_KEY = 'aresa-mode';
 
-// Initialize from localStorage or default to 'desktop'
-function getInitialMode(): ModeId {
-	if (browser) {
+// Reactive state using Svelte 5 runes - initialize with default, hydrate on client
+let _currentMode = $state<ModeId>('desktop');
+let _initialized = false;
+
+// Hydrate from localStorage on the client side
+function initializeMode() {
+	if (browser && !_initialized) {
+		_initialized = true;
 		const stored = localStorage.getItem(STORAGE_KEY);
 		if (stored === 'desktop' || stored === 'intervention') {
-			return stored;
+			_currentMode = stored;
 		}
 	}
-	return 'desktop';
 }
 
-// Reactive state using Svelte 5 runes
-let _currentMode = $state<ModeId>(getInitialMode());
-
-// Persist to localStorage when mode changes
-$effect.root(() => {
-	$effect(() => {
-		if (browser) {
-			localStorage.setItem(STORAGE_KEY, _currentMode);
-		}
+// Persist to localStorage when mode changes (client-side only)
+if (browser) {
+	$effect.root(() => {
+		// Initialize on first run
+		initializeMode();
+		
+		$effect(() => {
+			if (_initialized) {
+				localStorage.setItem(STORAGE_KEY, _currentMode);
+			}
+		});
 	});
-});
+}
 
 export function getCurrentMode(): ModeId {
 	return _currentMode;
