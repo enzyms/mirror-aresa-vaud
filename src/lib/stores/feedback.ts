@@ -230,7 +230,7 @@ function createFeedbackStore() {
 
 		markers.update((current) => [...current, marker]);
 		preparedMarker.set(null);
-		isActive.set(false);
+		// Stay in feedback mode after saving
 
 		// Notifier le parent
 		notifyParent({ type: 'FEEDBACK_MARKER_CREATED', marker });

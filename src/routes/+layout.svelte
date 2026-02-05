@@ -1,12 +1,42 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import '../app.css';
 	import FeedbackTool from '$lib/components/feedback/FeedbackTool.svelte';
 	import { feedbackStore } from '$lib/stores/feedback';
 	import type { ParentToAppMessage } from '$lib/types/feedback';
 
 	let { children } = $props();
+
+	// Subscribe to markers store reactively
+	const markersStore = feedbackStore.markers;
+
+	// Notify parent (sitemap-presenter) on navigation OR when markers change
+	$effect(() => {
+		if (!browser || !window.parent || window.parent === window) return;
+
+		const currentUrl = $page.url.href;
+		const currentPath = $page.url.pathname;
+		const currentTitle = document.title;
+		// Access store value reactively (this creates a dependency)
+		const allMarkers = $markersStore;
+		// Filter markers for current page only
+		const pageMarkers = allMarkers.filter((m) => m.pagePath === currentPath);
+
+		console.log('[Aresa] Sending navigation with markers:', pageMarkers.length, 'of', allMarkers.length, 'for path:', currentPath);
+
+		window.parent.postMessage(
+			{
+				type: 'FEEDBACK_NAVIGATION',
+				url: currentUrl,
+				pathname: currentPath,
+				title: currentTitle,
+				markers: [...pageMarkers] // Only markers for current page
+			},
+			'*'
+		);
+	});
 
 	onMount(() => {
 		if (!browser) return;
@@ -17,8 +47,8 @@
 
 			switch (data.type) {
 				case 'FEEDBACK_GET_MARKERS':
-					// Always use current page path, not the one from the message
-					feedbackStore.sendMarkersToParent(window.location.pathname);
+					// Return all markers, not filtered by page
+					feedbackStore.sendMarkersToParent();
 					break;
 				case 'FEEDBACK_UPDATE_STATUS':
 					feedbackStore.setStatus(data.markerId, data.status, true);

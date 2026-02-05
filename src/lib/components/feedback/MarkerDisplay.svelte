@@ -16,6 +16,12 @@
 	let position = $state({ x: 0, y: 0 });
 	let targetElement: HTMLElement | null = $state(null);
 	let rafId: number | null = null;
+	let wasHighlighted = $state(false);
+	let panelAlign = $state<'left' | 'center' | 'right'>('center');
+
+	// Panel width is w-72 = 288px
+	const PANEL_WIDTH = 288;
+	const MARGIN = 16;
 
 	// Find the target element using selector or xpath
 	function findElement(): HTMLElement | null {
@@ -50,18 +56,32 @@
 	function updatePosition(): void {
 		targetElement = findElement();
 
+		let newX: number;
+		let newY: number;
+
 		if (targetElement) {
 			const rect = targetElement.getBoundingClientRect();
-			position = {
-				x: rect.left + marker.anchor.offsetX,
-				y: rect.top + marker.anchor.offsetY
-			};
+			newX = rect.left + marker.anchor.offsetX;
+			newY = rect.top + marker.anchor.offsetY;
 		} else {
 			// Use fallback position (percentage of viewport)
-			position = {
-				x: (marker.fallbackPosition.xPercent / 100) * window.innerWidth,
-				y: (marker.fallbackPosition.yPercent / 100) * window.innerHeight
-			};
+			newX = (marker.fallbackPosition.xPercent / 100) * window.innerWidth;
+			newY = (marker.fallbackPosition.yPercent / 100) * window.innerHeight;
+		}
+
+		position = { x: newX, y: newY };
+
+		// Calculate panel alignment based on position
+		// Panel is 288px wide, check if it would overflow
+		const halfPanel = PANEL_WIDTH / 2;
+		if (newX - halfPanel < MARGIN) {
+			// Too close to left edge - align panel to left
+			panelAlign = 'left';
+		} else if (newX + halfPanel > window.innerWidth - MARGIN) {
+			// Too close to right edge - align panel to right
+			panelAlign = 'right';
+		} else {
+			panelAlign = 'center';
 		}
 	}
 
@@ -74,12 +94,17 @@
 		});
 	}
 
-	// Scroll marker into view when highlighted
+	// Scroll marker into view when highlighted, close when unhighlighted (from sidebar)
 	$effect(() => {
-		if (isHighlighted && targetElement) {
+		if (isHighlighted && !wasHighlighted && targetElement) {
+			// Just became highlighted (from sidebar click)
 			targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 			isExpanded = true;
+		} else if (!isHighlighted && wasHighlighted) {
+			// Just became unhighlighted (another marker was selected from sidebar)
+			isExpanded = false;
 		}
+		wasHighlighted = isHighlighted;
 	});
 
 	function handlePinClick(e: MouseEvent): void {
@@ -172,7 +197,7 @@
 	{#if isExpanded}
 		<div
 			data-feedback-tool="panel"
-			class="absolute left-1/2 top-full mt-2 w-72 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl"
+			class="absolute top-full mt-2 w-72 rounded-lg border border-gray-200 bg-white shadow-xl {panelAlign === 'left' ? 'left-0' : panelAlign === 'right' ? 'right-0' : 'left-1/2 -translate-x-1/2'}"
 		>
 			<!-- Header -->
 			<div class="flex items-center justify-between border-b border-gray-100 px-3 py-2">
