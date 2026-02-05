@@ -18,9 +18,11 @@
 	let rafId: number | null = null;
 	let wasHighlighted = $state(false);
 	let panelAlign = $state<'left' | 'center' | 'right'>('center');
+	let panelAbove = $state(false);
 
-	// Panel width is w-72 = 288px
-	const PANEL_WIDTH = 288;
+	// Panel dimensions
+	const PANEL_WIDTH = 288; // w-72 = 288px
+	const PANEL_HEIGHT = 250; // Approximate panel height
 	const MARGIN = 16;
 
 	// Find the target element using selector or xpath
@@ -71,17 +73,26 @@
 
 		position = { x: newX, y: newY };
 
-		// Calculate panel alignment based on position
-		// Panel is 288px wide, check if it would overflow
+		// Calculate panel horizontal alignment
 		const halfPanel = PANEL_WIDTH / 2;
 		if (newX - halfPanel < MARGIN) {
-			// Too close to left edge - align panel to left
 			panelAlign = 'left';
 		} else if (newX + halfPanel > window.innerWidth - MARGIN) {
-			// Too close to right edge - align panel to right
 			panelAlign = 'right';
 		} else {
 			panelAlign = 'center';
+		}
+
+		// Calculate panel vertical position
+		// Pin is ~32px tall, panel appears below with 8px margin
+		const pinHeight = 32;
+		const spaceBelow = window.innerHeight - newY - pinHeight;
+		const spaceAbove = newY - pinHeight;
+
+		if (spaceBelow < PANEL_HEIGHT + MARGIN && spaceAbove > spaceBelow) {
+			panelAbove = true;
+		} else {
+			panelAbove = false;
 		}
 	}
 
@@ -197,7 +208,7 @@
 	{#if isExpanded}
 		<div
 			data-feedback-tool="panel"
-			class="absolute top-full mt-2 w-72 rounded-lg border border-gray-200 bg-white shadow-xl {panelAlign === 'left' ? 'left-0' : panelAlign === 'right' ? 'right-0' : 'left-1/2 -translate-x-1/2'}"
+			class="absolute w-72 rounded-lg border border-gray-200 bg-white shadow-xl {panelAbove ? 'bottom-full mb-2' : 'top-full mt-2'} {panelAlign === 'left' ? 'left-0' : panelAlign === 'right' ? 'right-0' : 'left-1/2 -translate-x-1/2'}"
 		>
 			<!-- Header -->
 			<div class="flex items-center justify-between border-b border-gray-100 px-3 py-2">
